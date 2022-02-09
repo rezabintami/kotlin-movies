@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Design Custom -->
+    <dimen name="toolbar_shadow_height">10dp</dimen>
+    <dimen name="toolbar_shadow_adjust">-10dp</dimen>
+    <dimen name="padding_large">20dp</dimen>
+    <dimen name="compound_dimen_horizontal">15dp</dimen>
+    <dimen name="compound_dimen_vertical">8dp</dimen>
+    <dimen name="compound_title_to_item">8dp</dimen>
+    <dimen name="compound_weight_title">8</dimen>
+    <dimen name="drawable_left">20dp</dimen>
+    <dimen name="title_size">18dp</dimen>
+    <dimen name="drawer_height">160dp</dimen>
+    <dimen name="card_text_size">16dp</dimen>
+    <dimen name="card_height">400dp</dimen>
+    <dimen name="margin_top_text1">30dp</dimen>
+    <dimen name="uk_image_radius">8dp</dimen>
+    <dimen name="icon_section">58dp</dimen>
+
+    <!-- Baseline spacing -->
+    <dimen name="baseline_container_small">16dp</dimen>
+    <dimen name="baseline_container_medium">20dp</dimen>
+    <dimen name="baseline_container_large">32dp</dimen>
+    <dimen name="baseline_container_superlarge">100dp</dimen>
+
+    <!-- Common spacing -->
+    <!-- link https://material.io/design/layout/spacing-methods.html -->
+    <dimen name="smaller_space_new">4dp</dimen>
+    <dimen name="small_space_new">8dp</dimen>
+    <dimen name="extra_small_space_10_new">10dp</dimen>
+    <dimen name="extra_small_space_new">12dp</dimen>
+    <dimen name="medium_space_new">16dp</dimen>
+    <dimen name="extra_medium_space_new">20dp</dimen>
+    <dimen name="large_space_new">24dp</dimen>
+    <dimen name="extra_large_space_new">28dp</dimen>
+    <dimen name="larger_space_new">32dp</dimen>
+    <dimen name="slight_larger_space_new">34dp</dimen>
+    <dimen name="extra_larger_space_new">36dp</dimen>
+    <dimen name="largest_space_new">40dp</dimen>
+    <dimen name="largest_space_50_new">50dp</dimen>
+    <dimen name="largest_space_70_new">70dp</dimen>
+
+    <!-- Icon size -->
+    <dimen name="icon_size_small">12dp</dimen>
+    <dimen name="icon_size_medium_20">20dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="icon_size_medium_30">30dp</dimen>
+    <dimen name="icon_size_extra_medium">32dp</dimen>
+    <dimen name="icon_size_medium_large">35dp</dimen>
+    <dimen name="icon_size_large">48dp</dimen>
+    <dimen name="icon_super_large">70dp</dimen>
+
+    <!-- Typography spacing -->
+    <dimen name="text_space_small">4dp</dimen>
+    <dimen name="text_space_medium">8dp</dimen>
+    <dimen name="text_space_large">12dp</dimen>
+    <dimen name="text_space_largest">16dp</dimen>
+
+    <!--  Text Size  -->
+    <dimen name="fontsize_4">4sp</dimen>
+    <dimen name="fontsize_8">8sp</dimen>
+    <dimen name="fontsize_10">10sp</dimen>
+    <dimen name="fontsize_12">12sp</dimen>
+    <dimen name="fontsize_14">14sp</dimen>
+    <dimen name="fontsize_16">16sp</dimen>
+    <dimen name="fontsize_18">18sp</dimen>
+    <dimen name="fontsize_20">20sp</dimen>
+    <dimen name="fontsize_22">22sp</dimen>
+    <dimen name="fontsize_24">24sp</dimen>
+    <dimen name="fontsize_28">28sp</dimen>
+    <dimen name="fontsize_32">32sp</dimen>
+    <dimen name="fontsize_34">34sp</dimen>
+    <dimen name="fontsize_36">36sp</dimen>
+</resources>

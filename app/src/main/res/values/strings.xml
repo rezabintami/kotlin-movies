@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">movies</string>
     <string name="title_favorites">favorites</string>
+    <string name="home">Home</string>
+    <string name="favorite">favorite</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="no_data">Empty data</string>
+    <string name="favorites">Favorites</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
 </resources>

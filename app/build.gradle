@@ -1,17 +1,23 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk versions.compileSdk
+    compileSdkVersion versions.compileSdk
+
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
         applicationId "com.rezabintami.movies"
-        minSdk versions.minSdk
-        targetSdk versions.targetSdk
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         versionCode versions.versionCode
         versionName versions.versionName
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,16 +35,62 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+
     dynamicFeatures = [':features:favorites']
 }
 
-dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+dependencies {
+    implementation project(":core:common")
+    implementation androidX.appCompat
+    implementation androidX.core
+    implementation androidX.fragment
+    implementation androidX.constraintLayout
+    implementation androidX.recyclerView
+    implementation androidX.multidex
+    implementation androidX.annotation
+    implementation androidX.roomRuntime
+    implementation androidX.constraintLayout
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.0'
+    kapt androidX.roomCompiler
+    implementation androidX.room
+    implementation androidX.material
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+
+    //Kotlin coroutines
+    implementation coroutines.core
+    implementation coroutines.android
+
+    //Network
+    implementation retrofit.core
+    implementation retrofit.converterGson
+    implementation retrofit.okhttp
+    implementation retrofit.okhttpLogginInterceptor
+
+    //Architecture components
+    implementation androidX.lifecycleViewmodelKtx
+    implementation androidX.lifecycleRuntimeKtx
+    implementation androidX.lifecycleLivedataKtx
+    implementation androidX.lifecycleProcess
+
+    // HILT
+    implementation dagger.hiltAndroid
+    kapt dagger.hiltAndroidCompiler
+
+//    implementation 'androidx.core:core-ktx:1.7.0'
+//    implementation 'androidx.appcompat:appcompat:1.4.1'
+//    implementation 'com.google.android.material:material:1.5.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+//    testImplementation 'junit:junit:4.+'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="baseImageUrl">http://image.tmdb.org/t/p/w500%s</string>
+
 </resources>

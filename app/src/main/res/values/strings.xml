@@ -12,4 +12,6 @@
     <string name="now_playing">Now Playing</string>
     <string name="popular">Popular</string>
     <string name="top_rated">Top Rated</string>
+    <string name="overview">Overview</string>
+    <string name="popularity">Popularity : </string>
 </resources>

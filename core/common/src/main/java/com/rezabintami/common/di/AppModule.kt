@@ -14,6 +14,6 @@ abstract class AppModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun provideTourismUseCase(moviesInteractor: MoviesInteractor): MoviesUseCase
+    abstract fun provideMoviesUseCase(moviesInteractor: MoviesInteractor): MoviesUseCase
 
 }

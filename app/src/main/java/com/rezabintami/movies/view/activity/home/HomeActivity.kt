@@ -1,4 +1,4 @@
-package com.rezabintami.movies.view.activity
+package com.rezabintami.movies.view.activity.home
 
 import android.os.Bundle
 import android.view.View

@@ -12,7 +12,7 @@ import com.rezabintami.common.data.Resource
 import com.rezabintami.common.ui.MoviesAdapter
 import com.rezabintami.movies.R
 import com.rezabintami.movies.databinding.FragmentHomeBinding
-import com.rezabintami.movies.view.activity.DetailMoviesActivity
+import com.rezabintami.movies.view.activity.detailmovies.DetailMoviesActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +39,7 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        initClickListener()
         initViewModelObserver()
     }
 
@@ -51,9 +52,24 @@ class HomeFragment: Fragment() {
         binding.rvNowPlaying.adapter = adapterMoviesNowPlaying
         binding.rvPopular.adapter = adapterMoviesPopular
         binding.rvTopRated.adapter = adapterMoviesTopRated
+    }
 
+    private fun initClickListener(){
         adapterMoviesNowPlaying?.onItemClick = { selectedData ->
             val intent = Intent(activity, DetailMoviesActivity::class.java)
+            intent.putExtra(DetailMoviesActivity.MOVIE_ID, selectedData.id)
+            startActivity(intent)
+        }
+
+        adapterMoviesPopular?.onItemClick = { selectedData ->
+            val intent = Intent(activity, DetailMoviesActivity::class.java)
+            intent.putExtra(DetailMoviesActivity.MOVIE_ID, selectedData.id)
+            startActivity(intent)
+        }
+
+        adapterMoviesTopRated?.onItemClick = { selectedData ->
+            val intent = Intent(activity, DetailMoviesActivity::class.java)
+            intent.putExtra(DetailMoviesActivity.MOVIE_ID, selectedData.id)
             startActivity(intent)
         }
     }
@@ -80,39 +96,39 @@ class HomeFragment: Fragment() {
             }
         })
 
-        // Popular
-        viewModel.moviesNowPlaying.observe(viewLifecycleOwner, { moviesNowPlaying ->
-            if(moviesNowPlaying != null) {
-                when(moviesNowPlaying){
-                    is Resource.Loading -> binding.progressBarNowPlaying.visibility = View.VISIBLE
+        // Top Rated
+        viewModel.moviesTopRated.observe(viewLifecycleOwner, { moviesTopRated ->
+            if(moviesTopRated != null) {
+                when(moviesTopRated){
+                    is Resource.Loading -> binding.progressBarTopRated.visibility = View.VISIBLE
                     is Resource.Success -> {
-                        binding.progressBarNowPlaying.visibility = View.GONE
+                        binding.progressBarTopRated.visibility = View.GONE
                         // Add Adapter
-                        adapterMoviesPopular?.setData(moviesNowPlaying.data)
+                        adapterMoviesTopRated?.setData(moviesTopRated.data)
                     }
                     is Resource.Error -> {
-                        binding.progressBarNowPlaying.visibility = View.GONE
-                        binding.viewErrorNowPlaying.root.visibility = View.VISIBLE
-                        binding.viewErrorNowPlaying.tvError.text = moviesNowPlaying.message ?: getString(R.string.something_wrong)
+                        binding.progressBarTopRated.visibility = View.GONE
+                        binding.viewErrorTopRated.root.visibility = View.VISIBLE
+                        binding.viewErrorTopRated.tvError.text = moviesTopRated.message ?: getString(R.string.something_wrong)
                     }
                 }
             }
         })
 
-        //Top Rated
-        viewModel.moviesNowPlaying.observe(viewLifecycleOwner, { moviesNowPlaying ->
-            if(moviesNowPlaying != null) {
-                when(moviesNowPlaying){
-                    is Resource.Loading -> binding.progressBarNowPlaying.visibility = View.VISIBLE
+        //Popular
+        viewModel.moviesPopular.observe(viewLifecycleOwner, { moviesPopular ->
+            if(moviesPopular != null) {
+                when(moviesPopular){
+                    is Resource.Loading -> binding.progressBarPopular.visibility = View.VISIBLE
                     is Resource.Success -> {
-                        binding.progressBarNowPlaying.visibility = View.GONE
+                        binding.progressBarPopular.visibility = View.GONE
                         // Add Adapter
-                        adapterMoviesTopRated?.setData(moviesNowPlaying.data)
+                        adapterMoviesPopular?.setData(moviesPopular.data)
                     }
                     is Resource.Error -> {
-                        binding.progressBarNowPlaying.visibility = View.GONE
-                        binding.viewErrorNowPlaying.root.visibility = View.VISIBLE
-                        binding.viewErrorNowPlaying.tvError.text = moviesNowPlaying.message ?: getString(R.string.something_wrong)
+                        binding.progressBarPopular.visibility = View.GONE
+                        binding.viewErrorPopular.root.visibility = View.VISIBLE
+                        binding.viewErrorPopular.tvError.text = moviesPopular.message ?: getString(R.string.something_wrong)
                     }
                 }
             }

@@ -63,6 +63,11 @@
                 android:text="@string/popular"
                 style="@style/TextContentWhiteBold"/>
 
+            <include
+                android:id="@+id/view_error_popular"
+                layout="@layout/view_error_core"
+                android:visibility="gone" />
+
             <ProgressBar
                 android:id="@+id/progress_bar_popular"
                 style="?android:attr/progressBarStyle"
@@ -94,6 +99,11 @@
                 android:paddingTop="@dimen/extra_small_space_10_new"
                 android:text="@string/top_rated"
                 style="@style/TextContentWhiteBold"/>
+
+            <include
+                android:id="@+id/view_error_top_rated"
+                layout="@layout/view_error_core"
+                android:visibility="gone" />
 
             <ProgressBar
                 android:id="@+id/progress_bar_top_rated"

@@ -86,4 +86,7 @@ dependencies {
     // HILT
     implementation dagger.hiltAndroid
     kapt dagger.hiltAndroidCompiler
+
+    // Image Loader
+    implementation glide.core
 }

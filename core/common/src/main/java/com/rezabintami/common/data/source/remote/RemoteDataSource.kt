@@ -2,6 +2,7 @@ package com.rezabintami.common.data.source.remote
 
 import com.rezabintami.common.data.source.remote.network.ApiResponse
 import com.rezabintami.common.data.source.remote.network.ApiService
+import com.rezabintami.common.data.source.remote.response.DetailMoviesResponse
 import com.rezabintami.common.data.source.remote.response.MoviesResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -30,5 +31,48 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
             }
         }.flowOn(Dispatchers.IO)
     }
-}
+
+    fun getAllMoviesPopular(): Flow<ApiResponse<List<MoviesResponse>>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getMoviesPopular(apiKey)
+                val dataArray = response.result
+                if (dataArray.isNotEmpty()){
+                    emit(ApiResponse.Success(response.result))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun getAllMoviesTopRated(): Flow<ApiResponse<List<MoviesResponse>>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getMoviesTopRated(apiKey)
+                val dataArray = response.result
+                if (dataArray.isNotEmpty()){
+                    emit(ApiResponse.Success(response.result))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun getAllMoviesDetail(id: String): Flow<ApiResponse<DetailMoviesResponse>> = flow {
+            try {
+                val response = apiService.getMoviesDetail(id, apiKey)
+                emit(ApiResponse.Success(response))
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 

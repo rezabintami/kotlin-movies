@@ -13,7 +13,8 @@
             android:gravity="center"
             android:text="@string/something_wrong"
             android:textSize="18sp"
-            android:textColor="@color/Gray"/>
+            android:textColor="@color/Gray"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 </layout>

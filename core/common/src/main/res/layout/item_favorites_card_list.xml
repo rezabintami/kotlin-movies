@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/item_list">
 
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:background="@color/secondPrimary"
            android:layout_marginVertical="@dimen/smaller_space">
            <ImageView
                android:id="@+id/im_favorites"
                android:layout_width="100dp"
                android:layout_height="140dp"
+               android:scaleType="centerCrop"
                android:layout_marginEnd="@dimen/extra_medium_space"
                android:background="@drawable/rectangle_rounded_10_grey">
            </ImageView>
@@ -22,24 +24,29 @@
                android:layout_width="wrap_content"
                android:layout_height="match_parent"
                android:orientation="vertical"
-               android:gravity="center_vertical"
-               >
+               android:gravity="center_vertical">
 
                <TextView
+                   android:id="@+id/tv_title"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    style="@style/TextContentWhiteBold"
                    tools:text="Spiderman"/>
 
                <TextView
+                   android:id="@+id/tv_overview"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:paddingTop="@dimen/small_space"
+                   android:layout_marginEnd="@dimen/extra_small_space"
+                   android:maxLines="3"
+                   android:ellipsize="end"
+                   android:justificationMode="inter_word"
                    style="@style/TextContentGrey"
-                   tools:text="lorem ipsum dolor sit amet"/>
+                   tools:text="Donec ipsum felis, porttitor et finibus in, mollis in magna. Suspendisse feugiat neque eu lacus posuere, at ultricies odio mattis. Nunc rutrum ligula vestibulum finibus mollis. Aenean non lectus at tellus sagittis tincidunt sit amet vel urna. Praesent sit amet lorem quis ligula ornare aliquet. Nam porta aliquet ligula, ac feugiat nulla auctor ut. Integer vestibulum facilisis ante eu sagittis. Ut pharetra erat at convallis pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus tincidunt dictum quam, id ultricies turpis fringilla nec."/>
 
 
            </LinearLayout>
        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

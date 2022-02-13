@@ -1,5 +1,7 @@
 package com.rezabintami.common.data
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.rezabintami.common.data.source.local.LocalDataSource
 import com.rezabintami.common.data.source.remote.RemoteDataSource
 import com.rezabintami.common.data.source.remote.network.ApiResponse
@@ -77,8 +79,18 @@ class MoviesRepository @Inject constructor(
     }
 
     override fun setFavoriteMovies(movies: Movies) {
+        Log.d(TAG, "setFavoriteMovies: $movies")
         val movieEntity = DataMapper.mapDomainToEntity(movies)
-        appExecutors.diskIO().execute { localDataSource.insertMoviesToFavorites(movieEntity) }
+        appExecutors.diskIO().execute { localDataSource.insertMovieToFavorites(movieEntity) }
+    }
+
+    override fun isFavorite(id: String): Flow<Boolean> {
+        return localDataSource.isFavorite(id)
+    }
+
+    override fun removeFavoriteMovies(movies: Movies) {
+        val movieEntity = DataMapper.mapDomainToEntity(movies)
+        appExecutors.diskIO().execute { localDataSource.removeMovieFromFavorite(movieEntity) }
     }
 }
 

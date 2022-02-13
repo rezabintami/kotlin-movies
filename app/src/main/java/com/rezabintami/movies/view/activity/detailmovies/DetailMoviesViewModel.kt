@@ -14,7 +14,24 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailMoviesViewModel @Inject constructor(
         private val moviesUseCase: MoviesUseCase
-    ): ViewModel(){
+    ): ViewModel() {
+    var movie: Movies? = null
 
-    fun detailMovies(id : String) = moviesUseCase.getMovieDetail(id).asLiveData()
+    fun detailMovies(id: String) = moviesUseCase.getMovieDetail(id).asLiveData()
+
+    fun isFavorite(id: String) = moviesUseCase.isFavorite(id).asLiveData()
+
+    fun setFavorite(movie: Movies) = moviesUseCase.setFavoriteMovies(movie)
+
+    fun removeFavorite(movie: Movies) = moviesUseCase.removeFavoriteMovies(movie)
+
+    fun bind(mov: Movies) {
+        movie = Movies(
+            id = mov.id,
+            title = mov.title,
+            overview = mov.overview,
+            popularity = mov.popularity,
+            posterPath = mov.posterPath
+        )
+    }
 }

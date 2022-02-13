@@ -1,12 +1,11 @@
 package com.rezabintami.movies.view.activity.detailmovies
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.rezabintami.common.data.Resource
@@ -28,7 +27,6 @@ class DetailMoviesActivity: AppCompatActivity() {
 
         initDataBinding()
         intentBundle()
-
         initViewModelObserver()
     }
 
@@ -44,7 +42,6 @@ class DetailMoviesActivity: AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun initViewModelObserver() {
         viewModel.detailMovies(movieId).observe(this, { movieDetail ->
-            Log.d(TAG, "initViewModelObserver: $movieDetail")
             if(movieDetail != null) {
                 when(movieDetail) {
                     is Resource.Loading -> {
@@ -56,6 +53,10 @@ class DetailMoviesActivity: AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         binding.viewError.tvError.visibility = View.GONE
                         binding.nestedScrollView.visibility = View.VISIBLE
+
+                        movieDetail.data?.let {
+                            viewModel.bind(it)
+                        }
 
                         movieDetail.data?.let { movie ->
                             Glide.with(this)
@@ -77,26 +78,42 @@ class DetailMoviesActivity: AppCompatActivity() {
                 }
             }
         })
-//        viewModel.movieDetail.observe(this, { movieDetail ->
-//            if(movieDetail != null) {
-//                when(movieDetail) {
-//                    is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
-//                    is Resource.Success -> {
-//                        Log.d(TAG, "initViewModelObserver: ${movieDetail.data?.id}")
-//                        movieDetail.data?.let { movie ->
-////                            Glide.with(this)
-////                                .load(getString(R.string.baseImageUrl, movie.posterPath))
-////                                .into(binding.imPoster)
-//
-//                            binding.tvOverview.text = movie.overview
-//                            binding.tvPopularityValue.text = movie.popularity.toString()
-//                            binding.tvTitle.text = movie.title
-//                        }
-//
-//                    }
-//                    is Resource.Error -> binding.viewError.tvError.text = getString(R.string.something_wrong)
-//                }
-//            }
-//        })
+
+        viewModel.isFavorite(movieId).observe(this, { movieDetail ->
+            initClickListener(movieDetail)
+            if(movieDetail) {
+                binding.favoriteButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this.applicationContext,
+                        R.drawable.ic_favorite_white
+                    )
+                )
+            } else {
+
+                binding.favoriteButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this.applicationContext,
+                        R.drawable.ic_not_favorite_white
+                    )
+                )
+            }
+        })
+    }
+
+    private fun initClickListener(isFavorite: Boolean){
+        if (isFavorite){
+            binding.favoriteButton.setOnClickListener {
+                viewModel.movie?.let { movie ->
+                    viewModel.removeFavorite(movie)
+                }
+            }
+        } else {
+            binding.favoriteButton.setOnClickListener {
+                viewModel.movie?.let { movie ->
+                    viewModel.setFavorite(movie)
+                }
+            }
+        }
+
     }
 }

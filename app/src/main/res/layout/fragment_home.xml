@@ -13,7 +13,11 @@
         <include
             android:id="@+id/header"
             layout="@layout/view_header_core" />
-
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +53,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_now_playing"
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="180dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/extra_small_space_10_new"
                 tools:listitem="@layout/item_card_list"
@@ -86,7 +90,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_popular"
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="180dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/extra_small_space_10_new"
                 tools:listitem="@layout/item_card_list"
@@ -123,7 +127,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_top_rated"
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="180dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/extra_small_space_10_new"
                 tools:listitem="@layout/item_card_list"
@@ -131,6 +135,6 @@
 
         </LinearLayout>
 
-
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

@@ -2,8 +2,10 @@ package com.rezabintami.movies.view.activity.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.rezabintami.movies.R
@@ -39,8 +41,18 @@ class HomeActivity: AppCompatActivity() {
             }
 
             R.id.view_home_menu_2 -> {
+                instantiateFragment()
                 navController.navigate(R.id.action_to_favorites_page_new)
             }
+        }
+    }
+
+    private fun instantiateFragment(): Fragment? {
+        return try {
+            Class.forName("com.rezabintami.favorites.fragment.FavoritesFragment").newInstance() as Fragment
+        } catch (e: Exception) {
+            Toast.makeText(this, "Module not found", Toast.LENGTH_SHORT).show()
+            null
         }
     }
 }

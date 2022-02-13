@@ -12,5 +12,6 @@ interface IMoviesRepository {
     fun getMovieDetail(id: String): Flow<Resource<Movies>>
     fun getFavoriteMovies(): Flow<List<Movies>>
     fun setFavoriteMovies(movies: Movies)
-
+    fun isFavorite(id: String): Flow<Boolean>
+    fun removeFavoriteMovies(movies: Movies)
 }
